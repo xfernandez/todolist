@@ -1,16 +1,22 @@
 import sbt._
 import Keys._
-import PlayProject._
+import play.Project._
 
 object ApplicationBuild extends Build {
 
-    val appName = "todolist"
-    val appVersion = "1.0-SNAPSHOT"
-    
-    libraryDependencies ++= Seq(
-  	"postgresql" % "postgresql" % "8.4-702.jdbc4"
-    )
+  val appName         = "todolist"
+  val appVersion      = "1.0-SNAPSHOT"
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA)
+  val appDependencies = Seq(
+    // Add your project dependencies here,
+    javaCore,
+    javaJdbc,
+    javaEbean,
+    "postgresql" % "postgresql" % "9.1-901.jdbc4"
+  )
+
+  val main = play.Project(appName, appVersion, appDependencies).settings(
+    // Add your own project settings here      
+  )
 
 }
